@@ -1,0 +1,1 @@
+flink run -m yarn-cluster  -ynm test_redis   -yt  /data/swx1007553/     -yjm 1024 -ytm 4096   -c com.guigu.flink.TestParameterTools    /data/swx1007553/test0717.jar --configFile /data/swx1007553/config.properties
