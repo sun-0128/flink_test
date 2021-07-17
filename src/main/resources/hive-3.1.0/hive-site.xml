@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+        <property>
+                <name>hive.metastore.warehouse.dir</name>
+                <value>hdfs://hadoop01:9000/hive/warehouse</value>
+               <description>管理表存储的位置</description>
+        </property>
+        <property>
+                <name>javax.jdo.option.ConnectionURL</name>
+                <value>jdbc:mysql://hadoop01:3306/hive?createDatabaseIfNotExist=true</value>
+        </property>
+        <!-- 元数据存储数据库的驱动 -->
+        <property>
+                <name>javax.jdo.option.ConnectionDriverName</name>
+                <value>com.mysql.jdbc.Driver</value>
+        </property>
+        <!-- 元数据存储数据库的用户名 -->
+        <property>
+                <name>javax.jdo.option.ConnectionUserName</name>
+                <value>root</value>
+        </property>
+        <!-- 元数据存储数据库的密码,(注:这里是mysql自己root用户的密码) -->
+        <property>
+                <name>javax.jdo.option.ConnectionPassword</name>
+                <value>ok</value>
+        </property>
+        <property>
+                <name>hive.server2.authentication</name>
+                <value>NONE</value>
+        </property>
+        <property>
+                <name>hive.server2.thrift.client.user</name>
+                <value>root</value>
+         </property>
+         <property>
+                <name>hive.server2.thrift.client.password</name>
+                <value>ok</value>
+         </property>
+		 <!-- spark集成hive配置 -->
+		 <property>
+			<name>hive.metastore.uris</name>
+			<value>thrift://hadoop01:9083</value>
+		</property>
+<!-- hive事务支持-->
+<property>
+ <name>hive.optimize.sort.dynamic.partition</name>
+ <value>false</value>
+</property>
+<property>
+ <name>hive.support.concurrency</name>
+ <value>true</value>
+</property>
+<property>
+ <name>hive.enforce.bucketing</name>
+ <value>true</value>
+</property>
+<property>
+ <name>hive.exec.dynamic.partition.mode</name>
+ <value>nonstrict</value>
+</property>
+<property>
+ <name>hive.txn.manager</name>
+ <value>org.apache.hadoop.hive.ql.lockmgr.DbTxnManager</value>
+</property>
+<property>
+ <name>hive.compactor.initiator.on</name>
+ <value>true</value>
+</property>
+<property>
+ <name>hive.compactor.worker.threads</name>
+ <value>1</value>
+</property>
+<!--
+<property>
+ <name>hive.in.test</name>
+ <value>true</value>
+</property>
+-->
+		<!-- 显示表的列名 -->
+        <property>
+                <name>hive.cli.print.header</name>
+                <value>true</value>
+        </property>
+        <!-- 显示数据库名称 -->
+        <property>
+                <name>hive.cli.print.current.db</name>
+                <value>true</value>
+        </property>
+</configuration>
