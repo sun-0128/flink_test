@@ -82,11 +82,11 @@ object KafkaData2Hdfs {
     properties.setProperty("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
     properties.setProperty("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     val consumer = new FlinkKafkaConsumer[String](
-      "hasdk_log_test", new SimpleStringSchema(), properties)
+      "hasdkF_log_test", new SimpleStringSchema(), properties)
 
 
     //拿到kafka的数据
-    val kafkaDataStream: DataStream[String] = env.readTextFile("G:\\code\\flink_test\\src\\main\\java\\com\\guigu\\flink\\hasdk_log.txt")
+    val kafkaDataStream: DataStream[String] = env.readTextFile("G:\\code\\flink_test\\src\\main\\java\\com\\guigu\\flink\\")
     //    val kafkaDataStream: DataStream[String] = env.addSource(consumer)
 
     //将kafka中的json数据进行封装，转换成成Log样例类
@@ -156,7 +156,7 @@ object KafkaData2Hdfs {
     tblEnv.useCatalog("hive")
     tblEnv.getConfig.setSqlDialect(SqlDialect.HIVE)
 
-    val configs = Array("field1", "field2", "field3", "field4") :+ "field5" :+ "field6" :+"field7":+"field8"
+    val configs = Array("field1", "field2", "field3", "field4") :+ "field5" :+ "field6" :+ "field7" :+ "field8"
 
     val rawStream = showLabel.map(_._2)
       .map(
@@ -203,9 +203,7 @@ object KafkaData2Hdfs {
          |,DATE_FORMAT(timeStamp_flag, 'yyyyMMdd') as pt_d
          |from raw_table
          |""".stripMargin
-    println(insertSql)
-    val names = tblEnv.executeSql(insertSql).getTableSchema.getFieldNames
-    println(names.mkString(","))
+    tblEnv.executeSql(insertSql)
     env.execute("insert to hive")
   }
 

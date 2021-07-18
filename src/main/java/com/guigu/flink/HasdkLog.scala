@@ -1,12 +1,11 @@
 package com.guigu.flink
 
-import org.apache.flink.table.data.StringData
-import com.guigu.flink.KafkaData2Hdfs.transformTime
+
+//import com.guigu.flink.KafkaData2Hdfs.transformTime
 import org.apache.flink.orc.vector.Vectorizer
-import org.apache.flink.table.data.GenericRowData
-import org.apache.flink.table.data.RowData
 import java.sql.Timestamp
 
+import com.guigu.flink.TestParameterTools.transformTime
 import org.apache.flink.types.Row
 
 import scala.collection.mutable
@@ -44,15 +43,6 @@ object HasdkLog {
     log
   }
 
-  def toRawData(log: HasdkLog): RowData = {
-    val rowData = new GenericRowData(5)
-    rowData.setField(0, StringData.fromString(log.user_id))
-    rowData.setField(1, StringData.fromString(log.event_id))
-    rowData.setField(2, StringData.fromString(log.invited))
-    rowData.setField(3, StringData.fromString(log.time_stamp))
-    rowData.setField(4, StringData.fromString(log.interested))
-    rowData
-  }
 
 
   def map2RowData(map: mutable.Map[String, String]): Row = {

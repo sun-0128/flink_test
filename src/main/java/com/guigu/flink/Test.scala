@@ -6,7 +6,8 @@ import java.time.{Instant, ZoneId}
 import java.time.format.DateTimeFormatter
 
 import com.alibaba.fastjson.JSON
-import com.guigu.flink.KafkaData2Hdfs.transformTime
+import com.guigu.flink.TestParameterTools.transformTime
+//import com.guigu.flink.KafkaData2Hdfs.transformTime
 import com.guigu.flink.event.DayBucketAssigner
 import org.apache.flink.streaming.connectors.fs.bucketing.DateTimeBucketer
 
